@@ -4,3 +4,15 @@
   * KMP 
   * Boyer Moore 
   * Naive approach
+
+* Tools/Libraries used (_incremental_): 
+  * cProfile
+  * pycallgraph
+  * graphViz 
+  * GUI valgrind for python
+
+* Resources: 
+  * https://docs.python.org/2/library/profile.html
+  * https://www.ics.uci.edu/~pattis/ICS-33/lectures/complexitypython.txt
+  * https://people.duke.edu/~ccc14/sta-663/AlgorithmicComplexity.html
+  * http://pycallgraph.slowchop.com/en/master/
