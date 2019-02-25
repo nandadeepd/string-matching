@@ -1,3 +1,5 @@
+import cProfile
+
 class NaiveStringMatch(object):
 
     def __init__(self, text, word):
@@ -17,5 +19,7 @@ class NaiveStringMatch(object):
                 print("Pattern found at index ", i); indices.append(i)
         return indices
     
-matcher = NaiveStringMatch("How is it going", "going")
-print(matcher.search())
+matcher = NaiveStringMatch("How is it aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasdasfadsbgsdtzesdxndbrgdgvdxvffxdfgxdvfgxdcgxdgxfdgxdrfngsrdbgbvedgxetxdrtxdrtxdvvfgxdfgdxnhxdtxbdfgxdfgxfbgdzftbxrtdg going", "going")
+# print(matcher.search())
+
+cProfile.run('matcher.search()')
