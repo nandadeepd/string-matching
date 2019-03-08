@@ -1,3 +1,4 @@
+from utils.util import inputs
 class KMP(object):
 	def __init__(self, pattern, text):
 		self.pat = pattern; self.txt = text
@@ -53,10 +54,10 @@ class KMP(object):
 
 
 def main():
-    txt = "How is it aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasdasfadsbgsdgoingtzesdxndbrgdgvdxvffxdfgxdvfgxdcgxdgxfdgxdrfngsrdbgbvedgxetxdrtxdrtxdvvfgxdfgdxnhxdtxbdfgxdfgxfbgdzftbxrtdg going"
-    pat = "going"
+    txt = TEXT; pat = PATTERN
     kmp = KMP(pat, txt)
     print(kmp.KMPSearch())
+    
 
 if __name__ == "__main__":
     main()
