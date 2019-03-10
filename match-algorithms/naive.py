@@ -16,10 +16,16 @@ class NaiveStringMatch(object):
                 if (self.text[i + j] != self.word[j]): 
                     break
             if (j == self.word_len - 1):  
-                print("Pattern found at index ", i); indices.append(i)
+                indices.append(i)
         return indices
-    
-matcher = NaiveStringMatch("cagcggggaagggtctttaccgcttaggcctctaattctatcggttcggacggcgccaacttatatctcatacgcagcccaaccgcccactaagccgtcgagccaacctagaatgagcaggacgatccacctgcaatgccactcgagataatctcgaaggcttctagccctgacagtttccgtgagccgaatacagttacccacaattcttcaatcacggtcatctatctgatttggaaggctacatgtcgtccgtctcaggcactggcatgtcgacgttctaattggtctaaccacatgttgctctgctactcgcgcgagccccttaatagatgtaccatggcggcatcaccaaccgtgtcgttagctggaaaggcggctcacatcaatgagcgcgcgagtgataaaccaaacgatctaagccccgcacgataaaaaatagtggttacaggttcaccgtccgatgaccccttgtttgttatcagtgagcaagaaaaactcagcgccaccacaaatagtgtgggtgtatgaggtggaggggatagggctcatacaacaagggctgttacactacggtttaatcggtaatccccgtaagatgcgttatgagggcgccatctctatcacgaaaacctgttctataaccggggtgcacgcccactgattcgtcttcacggtattctcacacataaagccgcatattcgcgattggtgctctctagcgtggtggggcctgttacttcccgcatcctgggggtactaaggtcaactggtagtagctccacatcgaccttccgctgaaacagactgggtattacgcgcccggctgatagcaacgtaagatgccaggttaggacgcagtgtacgatatcggcaaagtagaactaccagtagttaatcctacaaagaccctcgtatcactaagagcctttatatatgcctataattgagtccgttggccaccgtggcatgactaccacatagtggtctctatccatcg", "gact")
-print(matcher.search())
 
-# cProfile.run('matcher.search()')
+
+def main():
+    
+    matcher = NaiveStringMatch("cagcggggaagggtctttaccgcttaggcctctaattctatcggttcggacggcgccaacttatatctcatacgcagcccaaccgcccactaagccgtcgagccaacctagaatgagcaggacgatccacctgcaatgccactcgagataatctcgaaggcttctagccctgacagtttccgtgagccgaatacagttacccacaattcttcaatcacggtcatctatctgatttggaaggctacatgtcgtccgtctcaggcactggcatgtcgacgttctaattggtctaaccacatgttgctctgctactcgcgcgagccccttaatagatgtaccatggcggcatcaccaaccgtgtcgttagctggaaaggcggctcacatcaatgagcgcgcgagtgataaaccaaacgatctaagccccgcacgataaaaaatagtggttacaggttcaccgtccgatgaccccttgtttgttatcagtgagcaagaaaaactcagcgccaccacaaatagtgtgggtgtatgaggtggaggggatagggctcatacaacaagggctgttacactacggtttaatcggtaatccccgtaagatgcgttatgagggcgccatctctatcacgaaaacctgttctataaccggggtgcacgcccactgattcgtcttcacggtattctcacacataaagccgcatattcgcgattggtgctctctagcgtggtggggcctgttacttcccgcatcctgggggtactaaggtcaactggtagtagctccacatcgaccttccgctgaaacagactgggtattacgcgcccggctgatagcaacgtaagatgccaggttaggacgcagtgtacgatatcggcaaagtagaactaccagtagttaatcctacaaagaccctcgtatcactaagagcctttatatatgcctataattgagtccgttggccaccgtggcatgactaccacatagtggtctctatccatcg", "gact")
+    # print(matcher.search())
+
+    cProfile.run('matcher.search()')
+
+if __name__ == '__main__':
+    main()

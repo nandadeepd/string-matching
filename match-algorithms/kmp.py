@@ -1,4 +1,7 @@
-from utils.util import inputs
+# from utils.util import inputs
+
+import cProfile
+
 class KMP(object):
 	def __init__(self, pattern, text):
 		self.pat = pattern; self.txt = text
@@ -54,9 +57,19 @@ class KMP(object):
 
 
 def main():
-    txt = TEXT; pat = PATTERN
-    kmp = KMP(pat, txt)
-    print(kmp.KMPSearch())
+    # txt = "cagcggggaagggtctttaccgcttaggcctctaattctatcggttcggacggcgccaacttatatctcatacgcagcccaaccgcccactaagccgtcgagccaacctagaatgagcaggacgatccacctgcaatgccactcgagataatctcgaaggcttctagccctgacagtttccgtgagccgaatacagttacccacaattcttcaatcacggtcatctatctgatttggaaggctacatgtcgtccgtctcaggcactggcatgtcgacgttctaattggtctaaccacatgttgctctgctactcgcgcgagccccttaatagatgtaccatggcggcatcaccaaccgtgtcgttagctggaaaggcggctcacatcaatgagcgcgcgagtgataaaccaaacgatctaagccccgcacgataaaaaatagtggttacaggttcaccgtccgatgaccccttgtttgttatcagtgagcaagaaaaactcagcgccaccacaaatagtgtgggtgtatgaggtggaggggatagggctcatacaacaagggctgttacactacggtttaatcggtaatccccgtaagatgcgttatgagggcgccatctctatcacgaaaacctgttctataaccggggtgcacgcccactgattcgtcttcacggtattctcacacataaagccgcatattcgcgattggtgctctctagcgtggtggggcctgttacttcccgcatcctgggggtactaaggtcaactggtagtagctccacatcgaccttccgctgaaacagactgggtattacgcgcccggctgatagcaacgtaagatgccaggttaggacgcagtgtacgatatcggcaaagtagaactaccagtagttaatcctacaaagaccctcgtatcactaagagcctttatatatgcctataattgagtccgttggccaccgtggcatgactaccacatagtggtctctatccatcg"; pat = "gact";
+    # kmp = KMP(pat, txt)
+    cProfile.run('txt = "cagcggggaagggtctttaccgcttaggcctctaattctatcggttcggacggcgccaacttatatctcatacgcagcccaaccgcccactaagccgtcgagccaacctagaatgagcaggacgatccacctgcaatgccactcgagataatctcgaaggcttctagccctgacagtttccgtgagccgaatacagttacccacaattcttcaatcacggtcatctatctgatttggaaggctacatgtcgtccgtctcaggcactggcatgtcgacgttctaattggtctaaccacatgttgctctgctactcgcgcgagccccttaatagatgtaccatggcggcatcaccaaccgtgtcgttagctggaaaggcggctcacatcaatgagcgcgcgagtgataaaccaaacgatctaagccccgcacgataaaaaatagtggttacaggttcaccgtccgatgaccccttgtttgttatcagtgagcaagaaaaactcagcgccaccacaaatagtgtgggtgtatgaggtggaggggatagggctcatacaacaagggctgttacactacggtttaatcggtaatccccgtaagatgcgttatgagggcgccatctctatcacgaaaacctgttctataaccggggtgcacgcccactgattcgtcttcacggtattctcacacataaagccgcatattcgcgattggtgctctctagcgtggtggggcctgttacttcccgcatcctgggggtactaaggtcaactggtagtagctccacatcgaccttccgctgaaacagactgggtattacgcgcccggctgatagcaacgtaagatgccaggttaggacgcagtgtacgatatcggcaaagtagaactaccagtagttaatcctacaaagaccctcgtatcactaagagcctttatatatgcctataattgagtccgttggccaccgtggcatgactaccacatagtggtctctatccatcg"; pat = "gact";kmp = KMP(pat, txt);kmp.KMPSearch()')
+    # content = ""
+    # with open('./datasets/dna-1.txt') as f:
+    #     content = f.read()
+
+
+    
+
+    
+    
+
     
 
 if __name__ == "__main__":

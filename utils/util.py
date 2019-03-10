@@ -18,17 +18,18 @@ class FileManipulation(object):
     
     # def read_csv_into_pandas(self):
 
-class Plotter(object):
+# class Plotter(object):
 
-    def plot_text_time(self, experiment, times, lengths):
-        plt.plot(times, lengths)
-        plt.xlabel("Time"); plt.ylabel("Text Length")
-        plt.savefig("./metrics/" + str(experiment) + ".png")
+#     def plot_text_time(self, experiment, times, lengths):
+#         plt.plot(times, lengths)
+#         plt.xlabel("Time"); plt.ylabel("Text Length")
+#         # plt.savefig("./metrics/" + str(experiment) + ".png")
+#         plt.show()
 
-    def sample_plot(self):
-        times = [1, 5, 3, 2, 6, 7, 8, 9, 10]
-        lengt = [50, 100, 40, 60 , 80 , 90, 300, 60, 500]
-        self.plot_text_time(1, times=times, lengths=lengt)
+#     def sample_plot(self):
+#         times = [1, 5, 3, 2, 6, 7, 8, 9, 10]
+#         lengt = [50, 100, 40, 60 , 80 , 90, 300, 60, 500]
+#         self.plot_text_time(experiment=1, times=times, lengths=lengt)
 
 
         
