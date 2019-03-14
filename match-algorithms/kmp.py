@@ -1,6 +1,7 @@
 # from utils.util import inputs
 
-import cProfile
+import cProfile, time, os
+from random import randint
 
 class KMP(object):
 	def __init__(self, pattern, text):
@@ -8,9 +9,11 @@ class KMP(object):
 		self.M = len(pattern); self.N = len(text)
 		self.matches = list()
 
-	def KMPSearch(self): 
+	def search(self): 
+		search_start_time = time.time()
 		j = 0 # index counter for pattern 
-		lps = self.computeLPSArray() # build the longest prefix table 
+		lps, p_time = self.computeLPSArray() # build the longest prefix table 
+		print(p_time)
 		i = 0 # index counter for text
 		while i < self.N: # iterating throught the text
 			if self.pat[j] == self.txt[i]: # when there's a character match
@@ -26,13 +29,14 @@ class KMP(object):
 				# Do not match lps[0..lps[j-1]] characters, 
 				# they will match anyway 
 				if j != 0: 
-					j = lps[j-1] 
+					j = lps[j-1]
 				else: 
 					i += 1
-		return self.matches
+		search_end_time = time.time()
+		return self.matches, search_end_time - search_start_time, p_time
 
 	def computeLPSArray(self):
-        
+		p_start_time = time.time()
 		lps = [0] * self.M
 		l = 0 # length of the previous longest prefix suffix 
 		lps[0] # lps[0] is always 0 
@@ -53,19 +57,42 @@ class KMP(object):
 				else: 
 					lps[i] = 0
 					i += 1
-		return lps
+		p_end_time = time.time()
+		return lps, p_end_time - p_start_time
 
+
+
+def pattern_generator(text, total_len):
+    len_edge = total_len - 4 # avoiding out of bounds!
+    start_num = randint(0, len_edge)
+    end_num = start_num + 4 # size of the pattern. 
+    return start_num, end_num
 
 def main():
-    # txt = "cagcggggaagggtctttaccgcttaggcctctaattctatcggttcggacggcgccaacttatatctcatacgcagcccaaccgcccactaagccgtcgagccaacctagaatgagcaggacgatccacctgcaatgccactcgagataatctcgaaggcttctagccctgacagtttccgtgagccgaatacagttacccacaattcttcaatcacggtcatctatctgatttggaaggctacatgtcgtccgtctcaggcactggcatgtcgacgttctaattggtctaaccacatgttgctctgctactcgcgcgagccccttaatagatgtaccatggcggcatcaccaaccgtgtcgttagctggaaaggcggctcacatcaatgagcgcgcgagtgataaaccaaacgatctaagccccgcacgataaaaaatagtggttacaggttcaccgtccgatgaccccttgtttgttatcagtgagcaagaaaaactcagcgccaccacaaatagtgtgggtgtatgaggtggaggggatagggctcatacaacaagggctgttacactacggtttaatcggtaatccccgtaagatgcgttatgagggcgccatctctatcacgaaaacctgttctataaccggggtgcacgcccactgattcgtcttcacggtattctcacacataaagccgcatattcgcgattggtgctctctagcgtggtggggcctgttacttcccgcatcctgggggtactaaggtcaactggtagtagctccacatcgaccttccgctgaaacagactgggtattacgcgcccggctgatagcaacgtaagatgccaggttaggacgcagtgtacgatatcggcaaagtagaactaccagtagttaatcctacaaagaccctcgtatcactaagagcctttatatatgcctataattgagtccgttggccaccgtggcatgactaccacatagtggtctctatccatcg"; pat = "gact";
-    # kmp = KMP(pat, txt)
-    cProfile.run('txt = "cagcggggaagggtctttaccgcttaggcctctaattctatcggttcggacggcgccaacttatatctcatacgcagcccaaccgcccactaagccgtcgagccaacctagaatgagcaggacgatccacctgcaatgccactcgagataatctcgaaggcttctagccctgacagtttccgtgagccgaatacagttacccacaattcttcaatcacggtcatctatctgatttggaaggctacatgtcgtccgtctcaggcactggcatgtcgacgttctaattggtctaaccacatgttgctctgctactcgcgcgagccccttaatagatgtaccatggcggcatcaccaaccgtgtcgttagctggaaaggcggctcacatcaatgagcgcgcgagtgataaaccaaacgatctaagccccgcacgataaaaaatagtggttacaggttcaccgtccgatgaccccttgtttgttatcagtgagcaagaaaaactcagcgccaccacaaatagtgtgggtgtatgaggtggaggggatagggctcatacaacaagggctgttacactacggtttaatcggtaatccccgtaagatgcgttatgagggcgccatctctatcacgaaaacctgttctataaccggggtgcacgcccactgattcgtcttcacggtattctcacacataaagccgcatattcgcgattggtgctctctagcgtggtggggcctgttacttcccgcatcctgggggtactaaggtcaactggtagtagctccacatcgaccttccgctgaaacagactgggtattacgcgcccggctgatagcaacgtaagatgccaggttaggacgcagtgtacgatatcggcaaagtagaactaccagtagttaatcctacaaagaccctcgtatcactaagagcctttatatatgcctataattgagtccgttggccaccgtggcatgactaccacatagtggtctctatccatcg"; pat = "gact";kmp = KMP(pat, txt);kmp.KMPSearch()')
-    # content = ""
-    # with open('./datasets/dna-1.txt') as f:
-    #     content = f.read()
+    times = list()
+    ls = list()
+    for file in os.listdir('/Users/nandadeepd/Desktop/string-matching/datasets/'):
+        if "url" in file:
+            content = open('/Users/nandadeepd/Desktop/string-matching/datasets/' + file).read()
+            l = len(content)
+            s = time.time()
+            matcher = KMP(content, "jpg")
+            matches= matcher.search()
+            e = time.time()
+            times.append(e-s)
+            ls.append(l)
+        if "dna" in file:
+            content = open('/Users/nandadeepd/Desktop/string-matching/datasets/' + file).read()
+            l = len(content)
+            s = time.time()
+            pattern = pattern_generator(content, l)
+            matcher = KMP(content, pattern)
+            matches= matcher.search()
+            e = time.time()
+            times.append(e-s)
+            ls.append(l)
 
-
-    
+    print(times, ls)
 
     
     
